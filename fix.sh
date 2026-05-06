@@ -35,3 +35,9 @@ fi
 
 #   Shows the final result
 cat $grub
+
+#   Ask user if it's ok
+read -p "Rebuild Grub? Y/n: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+
+#   Rebuild grub configuration
+grub2-mkconfig -o /boot/grub2/grub.cfg
