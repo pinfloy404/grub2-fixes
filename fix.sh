@@ -12,6 +12,14 @@ gfxmode="GRUB_GFXMODE=auto"
 #   Option to disable OS Prober
 disable_os_prober="GRUB_DISABLE_OS_PROBER=true"
 
+#   Check if GRUB file is at location
+if find $grub; then
+    echo "grub file located :)"
+else
+    echo "no grub file in $grub"
+    exit 1
+fi
+
 #   Change Grub terminal output from console to gfxterm if not modified
 if grep -q $terminal_output_gfxterm $grub; then
     echo "gfxterm is already added"
