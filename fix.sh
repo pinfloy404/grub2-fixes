@@ -1,18 +1,19 @@
 #!/bin/bash
 
-#   Grub location
+#   GRUB2 location
 grub="/etc/default/grub"
 
-#   Options to fix screen resolution
+#   Options to change GRUB2 terminal output
 terminal_output_console="GRUB_TERMINAL_OUTPUT=\"console\""
 terminal_output_gfxterm="GRUB_TERMINAL_OUTPUT=\"gfxterm\""
 
+#   Option to detect automatically screen resolution
 gfxmode="GRUB_GFXMODE=auto"
 
-#   Option to disable OS Prober
+#   Option to disable os-prober
 disable_os_prober="GRUB_DISABLE_OS_PROBER=true"
 
-#   Checks if GRUB file is at location
+#   Checks if GRUB2 file is at location
 if find $grub; then
     echo "grub file located :)"
 else
@@ -23,10 +24,10 @@ fi
 #   Creates temporal file
 temp_file=$(mktemp)
 
-#   Copies GRUB file data to temporal file
+#   Copies GRUB2 file data to temporal file
 cat $grub > $temp_file
 
-#   Change Grub terminal output from console to gfxterm if not modified
+#   Change GRUB2 terminal output from console to gfxterm if not modified
 if grep -q $terminal_output_gfxterm $grub; then
     echo "gfxterm is already added"
 else
@@ -40,7 +41,7 @@ else
     echo $gfxmode >> $temp_file
 fi
 
-#   Disables OS prober if not exists
+#   Disables os-prober if it's not already disabled
 if grep -q $disable_os_prober $grub; then
     echo "os-prober is already disabled"
 else
@@ -50,10 +51,10 @@ fi
 #   Shows the final result
 cat $temp_file
 
-#   Ask user if it's ok, if not, deletes temporal file and exits
-read -p "Do you wanna rebuild GRUB with this configuration? Y/n: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || rm $temp_file && exit 1
+#   Ask user if it's ok to continue, if not, deletes temporal file and exits
+read -p "Do you wanna rebuild GRUB2 with this configuration? [Y/n]: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || rm $temp_file && exit 1
 
-#   Overwrites GRUB file data
+#   Overwrites GRUB2 file data
 cat $temp_file > $grub
 
 #   Deletes temporal file
