@@ -31,8 +31,12 @@ This script adds and changes the following in this part.
 
 To run the Bash script, simply run the following command.
 
+> [!WARNING]
+> This script was tested for ***Fedora 43*** with ***GRUB 2.12***.
+
 > [!CAUTION]
 > This script must run with **sudo**, check the script before doing anything.
+>
 > **I'm not responsible if your PC doesn't boot never again** 😥😥😖😖
 
 ```bash
