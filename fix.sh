@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#   GRUB2 location
+grub="/etc/default/grub"
+
 #   Argument variables, all True by default
 terminal_output=1
 gfxmode=1
@@ -13,13 +16,19 @@ if [[ $# -ne 0 ]]; then
     os_prober=0
 
     #   List of arguments
-    ARGS=$(getopt -o tgo --long terminal-output,gfxmode,os-prober -- "$@")
+    ARGS=$(getopt -o c:tgo --long configuration-file:,terminal-output,gfxmode,os-prober -- "$@")
 
     #   Argument parsing
     eval set -- "$ARGS"
 
     while [ : ]; do
         case "$1" in
+            -c | --configuration-file)
+                echo "configuration file selected at $2"
+                grub=$2
+                shift 2
+                ;;
+
             -t | --terminal-output)
                 echo "terminal output changed"
                 terminal_output=1
@@ -49,8 +58,10 @@ else
     read -p "All options are enabled! Do you wanna continue? [Y/n]: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 fi
 
-#   GRUB2 location
-grub="/etc/default/grub"
+#   Checks if GRUB2 file is at location
+if ! find $grub > /dev/null; then
+    exit 1
+fi
 
 #   Options to change GRUB2 terminal output
 terminal_output_console="GRUB_TERMINAL_OUTPUT=\"console\""
@@ -61,12 +72,6 @@ gfx_auto="GRUB_GFXMODE=auto"
 
 #   Option to disable os-prober
 disable_os_prober="GRUB_DISABLE_OS_PROBER=true"
-
-#   Checks if GRUB2 file is at location
-if ! find $grub > /dev/null; then
-    echo "no grub file in $grub"
-    exit 1
-fi
 
 #   Creates temporal file
 temp_file=$(mktemp)
