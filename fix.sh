@@ -126,7 +126,7 @@ fi
 echo && cat $temp_file && echo
 
 #   Ask user if it's ok to continue, if not, deletes temporal file and exits
-read -p "Do you wanna rebuild GRUB2 with this configuration? [Y/n]: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || rm $temp_file && exit 1
+read -p "Do you wanna rebuild GRUB2 with this configuration? [Y/n]: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || { rm $temp_file; exit 1; }
 
 #   Overwrites GRUB2 file data
 cat $temp_file > $grub
