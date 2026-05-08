@@ -16,39 +16,52 @@ if [[ $# -ne 0 ]]; then
     os_prober=0
 
     #   List of arguments
-    ARGS=$(getopt -o c:tgo --long configuration-file:,terminal-output,gfxmode,os-prober -- "$@")
+    ARGS=$(getopt -o c:tgo --long configuration-file:,terminal-output,gfxmode,os-prober -- "$@" 2>/dev/null)
+
+    #   Checks for invalid arguments
+    if [[ $? -ne 0 ]]; then
+        echo -e "invalid argument $@"
+        exit 1
+    fi
 
     #   Argument parsing
     eval set -- "$ARGS"
 
-    while [ : ]; do
-        case "$1" in
+    #   Argument processing
+    while true; do
+        #   Argument selector
+        case $1 in
+            #   Configuration file argument
             -c | --configuration-file)
                 echo "configuration file selected at $2"
                 grub=$2
                 shift 2
                 ;;
 
+            #   Terminal output argument
             -t | --terminal-output)
                 echo "terminal output changed"
                 terminal_output=1
                 shift
                 ;;
             
+            #   Screen resolution argument
             -g | --gfxmode)
                 echo "gfxmode added"
                 gfxmode=1
                 shift
                 ;;
 
+            #   os-prober argument
             -o | --os-prober)
                 echo "os-prober disabled"
                 os_prober=1
                 shift
                 ;;
 
+            #   End
             --)
-                shift;
+                shift
                 break
                 ;;
         esac
