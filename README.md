@@ -43,6 +43,25 @@ To run the Bash script, simply run the following command.
 sh fix.sh
 ```
 
+### Arguments
+
+You can use the script with the following command structure.
+
+```bash
+sh fix.sh [arguments...] [value]
+```
+
+Here is the list of arguments you can use, for more detail, you can read the [Fixes](#what-fixes) section.
+
+####    List of arguments
+
+| Simple | Complete | Description |
+| --- | --- | --- |
+| `-c` | `--configuration-file` | Input a custom path for GRUB2 configuration file |
+| `-t` | `--terminal-output` | Changes *GRUB_TERMINAL_OUTPUT* option from **console** to **gfxterm** |
+| `-g` | `--gfxmode` | Adds the *GRUB_GFXMODE* option with **auto** value |
+| `-o` | `--os-prober` | Adds the *GRUB_DISABLE_OS_PROBER* option with **true** value |
+
 ## License
 
 This repository uses the [GPLv3](https://choosealicense.com/licenses/gpl-3.0/) license.
