@@ -44,6 +44,9 @@ if [[ $# -ne 0 ]]; then
                 ;;
         esac
     done
+else
+    #   Ask user if it's ok to continue with all arguments enabled
+    read -p "All options are enabled! Do you wanna continue? [Y/n]: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
 fi
 
 #   GRUB2 location
@@ -60,9 +63,7 @@ gfx_auto="GRUB_GFXMODE=auto"
 disable_os_prober="GRUB_DISABLE_OS_PROBER=true"
 
 #   Checks if GRUB2 file is at location
-if find $grub; then
-    echo "grub file located :)"
-else
+if ! find $grub > /dev/null; then
     echo "no grub file in $grub"
     exit 1
 fi
@@ -103,8 +104,8 @@ if (( os_prober )); then
     fi
 fi
 
-#   Shows the final result
-cat $temp_file
+#   Shows the final result with line separations between
+echo && cat $temp_file && echo
 
 #   Ask user if it's ok to continue, if not, deletes temporal file and exits
 read -p "Do you wanna rebuild GRUB2 with this configuration? [Y/n]: " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || rm $temp_file && exit 1
@@ -112,8 +113,8 @@ read -p "Do you wanna rebuild GRUB2 with this configuration? [Y/n]: " confirm &&
 #   Overwrites GRUB2 file data
 cat $temp_file > $grub
 
-#   Deletes temporal file
-rm $temp_file
+#   Deletes temporal file and prints line separation
+rm $temp_file && echo
 
 #   Rebuild grub configuration
 grub2-mkconfig -o /boot/grub2/grub.cfg
