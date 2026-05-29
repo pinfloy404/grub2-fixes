@@ -1,10 +1,17 @@
 # GRUB2 Fixes
 
+![bash](https://img.shields.io/badge/Bash-forestgreen?logo=gnubash&logoColor=white)
+![grub](https://img.shields.io/badge/GRUB_2.12-indigo)
+![gpl](https://img.shields.io/badge/License-GPLv3-blue)
+
 A simple script in Bash to fix a few things for GRUB2.
 
-##  What fixes?
+## Overview
 
 This script adds and changes some options to the GRUB2 configuration and rebuilds it automatically.
+
+> [!WARNING]
+> This script was tested for ***Fedora 43*** ***Fedora 44*** and  with ***GRUB 2.12***.
 
 ### Screen resolution
 
@@ -27,12 +34,9 @@ This script adds and changes the following in this part.
 | --- | --- |
 | GRUB_DISABLE_OS_PROBER=true | Disables os-prober completely |
 
-##  Usage
+## Usage
 
 To run the Bash script, simply run the following command.
-
-> [!WARNING]
-> This script was tested for ***Fedora 43*** with ***GRUB 2.12***.
 
 > [!CAUTION]
 > This script must run with **sudo**, check the script before doing anything.
@@ -51,9 +55,9 @@ You can use the script with the following command structure.
 sh fix.sh [arguments...] [value]
 ```
 
-Here is the list of arguments you can use, for more detail, you can read the [Fixes](#what-fixes) section.
+Here is the list of arguments you can use, for more detail, you can read the [Overview](#overview) section.
 
-####    List of arguments
+#### List of arguments
 
 | Simple | Complete | Description |
 | --- | --- | --- |
