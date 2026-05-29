@@ -17,7 +17,7 @@ This script adds and changes some options to the GRUB2 configuration and rebuild
 
 Sometimes GRUB2 don't detects automatically the screen resolution, so everytime the system gets wiped out, this options has to be added and changed into the GRUB2 file configuration.
 
-This script adds and changes the following in this part.
+This script adds and changes these parts.
 
 | Option | Description |
 | --- | --- |
@@ -28,7 +28,7 @@ This script adds and changes the following in this part.
 
 If there are other OS in another hard drive, GRUB2 automatically detects it and adds it into the menu, but selecting them sometimes doesn't work, so this script adds the option to disable it, so makes the menu more cleaner.
 
-This script adds and changes the following in this part.
+This script adds and changes this part.
 
 | Option | Description |
 | --- | --- |
@@ -47,17 +47,17 @@ To run the Bash script, simply run the following command.
 sh fix.sh
 ```
 
-### Arguments
+### Options
 
-You can use the script with the following command structure.
+You can use the script with this command structure.
 
 ```bash
-sh fix.sh [arguments...] [value]
+sh fix.sh [options...] [value]
 ```
 
-Here is the list of arguments you can use, for more detail, you can read the [Overview](#overview) section.
+Here is the list of options you can use, for more detail, you can read the [Overview](#overview) section.
 
-#### List of arguments
+#### List of options
 
 | Simple | Complete | Description |
 | --- | --- | --- |
