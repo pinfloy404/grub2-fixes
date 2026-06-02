@@ -1,8 +1,8 @@
 # GRUB2 Fixes
 
-![bash](https://img.shields.io/badge/Bash-forestgreen?logo=gnubash&logoColor=white)
-![grub](https://img.shields.io/badge/GRUB_2.12-indigo)
-![gpl](https://img.shields.io/badge/License-GPLv3-blue)
+![bash](https://img.shields.io/badge/Bash_Shell-Chartreuse?logo=gnubash&logoColor=white)
+![grub](https://img.shields.io/badge/GRUB-2.12-mintcream)
+![gpl](https://img.shields.io/badge/License-GPLv3-crimson)
 
 A simple script in Bash to fix a few things for GRUB2.
 
