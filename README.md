@@ -68,4 +68,4 @@ Here is the list of options you can use, for more detail, you can read the [Over
 
 ## License
 
-This repository uses the [GPLv3](https://choosealicense.com/licenses/gpl-3.0/) license.
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for details.
